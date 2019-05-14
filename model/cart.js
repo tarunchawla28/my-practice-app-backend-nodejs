@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Customer } = require('../model/customer');
 const { Product } = require('../model/product');
 const Joi = require('joi');
-const wishlistSchema = new mongoose.Schema({
+const cartSchema = new mongoose.Schema({
     customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Customer'
@@ -16,13 +16,13 @@ const wishlistSchema = new mongoose.Schema({
         min: 1
     }
 });
-const Wishlist = mongoose.model('Wishlist', wishlistSchema);
-function validateCart(wishlist) {
+const Cart = mongoose.model('Cart', cartSchema);
+function validateCart(cart) {
     const schema = {
         customerId: Joi.ObjectId().required(),
         productId: Joi.ObjectId().required()
     }
-    return Joi.validate(wishlist, schema);
+    return Joi.validate(cart, schema);
 }
-exports.Wishlist = Wishlist;
+exports.Cart = Cart;
 exports.validate = validateCart;
