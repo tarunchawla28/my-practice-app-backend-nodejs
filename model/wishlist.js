@@ -17,7 +17,7 @@ const wishlistSchema = new mongoose.Schema({
     }
 });
 const Wishlist = mongoose.model('Wishlist', wishlistSchema);
-function validateCart(wishlist) {
+function validateWishlist(wishlist) {
     const schema = {
         customerId: Joi.ObjectId().required(),
         productId: Joi.ObjectId().required()
@@ -25,4 +25,4 @@ function validateCart(wishlist) {
     return Joi.validate(wishlist, schema);
 }
 exports.Wishlist = Wishlist;
-exports.validate = validateCart;
+exports.validate = validateWishlist;
